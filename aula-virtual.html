@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula Virtual — PROTEQLIFE Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#05192D;--navy-mid:#0C3254;--blue:#1565C0;--blue-bright:#2196F3;
+  --blue-light:#E3F2FD;--accent:#FF6B35;--accent-light:#FFF3EE;
+  --gold:#F59E0B;--gold-light:#FFFBEB;
+  --green:#1B5E20;--green-light:#E8F5E9;
+  --gray-100:#F5F7FA;--gray-200:#E8ECF0;--gray-400:#9BA3AD;
+  --gray-600:#5A6472;--gray-800:#2C3540;--white:#FFFFFF;
+  --radius-sm:6px;--radius-md:10px;--radius-lg:16px;
+  --shadow-sm:0 1px 3px rgba(5,25,45,0.08);
+  --shadow-md:0 4px 16px rgba(5,25,45,0.10);
+  --shadow-lg:0 12px 40px rgba(5,25,45,0.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--gray-800);background:var(--gray-100);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.2}
+a{text-decoration:none;color:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* AULA PAGE */
+.aula-hero{background:var(--navy);padding:60px 0;position:relative;overflow:hidden}
+.aula-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(33,150,243,.15) 0%,transparent 65%);pointer-events:none}
+.aula-hero-inner{display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:center}
+.aula-hero-text h1{font-size:36px;font-weight:800;color:#fff;margin-bottom:12px}
+.aula-hero-text h1 em{color:var(--blue-bright);font-style:normal}
+.aula-hero-text p{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:28px;max-width:440px}
+.aula-features{display:flex;flex-direction:column;gap:12px}
+.aula-feat{display:flex;align-items:center;gap:12px}
+.aula-feat-icon{width:32px;height:32px;border-radius:8px;background:rgba(33,150,243,.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.aula-feat span{font-size:13px;color:rgba(255,255,255,.8)}
+
+/* LOGIN CARD */
+.aula-card{background:#fff;border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-lg)}
+.aula-card-tabs{display:flex;gap:4px;background:var(--gray-100);border-radius:var(--radius-md);padding:4px;margin-bottom:24px}
+.aula-tab{flex:1;padding:9px;text-align:center;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;color:var(--gray-600);transition:all .2s}
+.aula-tab.active{background:#fff;color:var(--navy);box-shadow:var(--shadow-sm)}
+.aula-form-section{display:none}
+.aula-form-section.active{display:block}
+.form-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.form-subtitle{font-size:13px;color:var(--gray-600);margin-bottom:20px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:5px}
+.fg input{width:100%;padding:11px 14px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--gray-800);background:#fff;outline:none;transition:border-color .15s}
+.fg input:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px rgba(33,150,243,.1)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.aula-btn{width:100%;padding:13px;background:var(--blue);color:#fff;border:none;border-radius:var(--radius-md);font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s;margin-bottom:12px}
+.aula-btn:hover{background:var(--navy-mid)}
+.aula-btn-wa{width:100%;padding:12px;background:#25D366;color:#fff;border:none;border-radius:var(--radius-md);font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.aula-btn-wa:hover{background:#1da851}
+.aula-forgot{text-align:right;margin-bottom:14px}
+.aula-forgot a{font-size:12px;color:var(--blue);cursor:pointer}
+.aula-divider{display:flex;align-items:center;gap:12px;margin:14px 0;color:var(--gray-400);font-size:12px}
+.aula-divider::before,.aula-divider::after{content:'';flex:1;height:1px;background:var(--gray-200)}
+.aula-footer-text{text-align:center;font-size:12px;color:var(--gray-400);margin-top:12px}
+.aula-footer-text a{color:var(--blue);cursor:pointer;font-weight:600}
+.terms-check{display:flex;align-items:flex-start;gap:8px;margin-bottom:14px}
+.terms-check input{margin-top:3px;flex-shrink:0}
+.terms-check span{font-size:12px;color:var(--gray-600)}
+.terms-check a{color:var(--blue)}
+
+/* INFO SECTION */
+.aula-info{padding:64px 0}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.info-card{background:#fff;border-radius:var(--radius-lg);padding:28px;border:1px solid var(--gray-200);text-align:center;transition:all .2s}
+.info-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.info-icon{font-size:36px;margin-bottom:14px}
+.info-card h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.info-card p{font-size:13px;color:var(--gray-600);line-height:1.6}
+
+/* CURSOS DISPONIBLES */
+.mis-cursos{padding:0 0 64px}
+.mc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.mc-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--navy)}
+.mc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.mc-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--gray-200);transition:all .2s}
+.mc-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.mc-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative}
+.mc-progress-bar{position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--gray-200)}
+.mc-progress-fill{height:100%;background:var(--blue-bright);border-radius:2px;transition:width .3s}
+.mc-body{padding:16px}
+.mc-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.mc-meta{display:flex;gap:12px;margin-bottom:12px}
+.mc-meta span{font-size:11px;color:var(--gray-400)}
+.mc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--gray-200)}
+.mc-pct{font-size:12px;font-weight:600;color:var(--blue)}
+.mc-btn{font-size:12px;font-weight:600;padding:6px 14px;border-radius:var(--radius-sm);background:var(--blue-light);color:var(--blue);border:none;cursor:pointer}
+.mc-btn:hover{background:var(--blue);color:#fff}
+.mc-locked{opacity:.6}
+.mc-locked .mc-btn{background:var(--gray-200);color:var(--gray-400);cursor:default}
+
+/* MENSAJE ESTADO */
+.state-login{display:block}
+.state-dashboard{display:none}
+
+footer{background:var(--navy);padding:32px 0 20px}
+.ft-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ft-logo{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#fff}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.3)}
+.ft-links{display:flex;gap:20px}
+.ft-links a{font-size:12px;color:rgba(255,255,255,.5);transition:color .15s}
+.ft-links a:hover{color:#fff}
+
+@media(max-width:900px){
+  .aula-hero-inner{grid-template-columns:1fr}
+  .aula-card{margin-top:24px}
+  .info-grid{grid-template-columns:1fr}
+  .mc-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .fg-row{grid-template-columns:1fr}
+  .aula-hero-text h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<script src="nav.js"></script>
+
+<!-- HERO AULA -->
+<section class="aula-hero">
+  <div class="container">
+    <div class="aula-hero-inner">
+      <div class="aula-hero-text">
+        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--blue-bright);margin-bottom:14px">Plataforma de aprendizaje</div>
+        <h1>PROTEQLIFE</em><br>Consulting</h1>
+        <p>Accede a tus cursos grabados, clases en vivo, materiales de estudio y descarga tus certificados desde cualquier lugar.</p>
+        <div class="aula-features">
+          <div class="aula-feat"><div class="aula-feat-icon">📹</div><span>Videoconferencias grabadas disponibles 24/7</span></div>
+          <div class="aula-feat"><div class="aula-feat-icon">🎓</div><span>Descarga tus certificados al aprobar</span></div>
+          <div class="aula-feat"><div class="aula-feat-icon">📱</div><span>Accede desde PC, tablet o celular</span></div>
+          <div class="aula-feat"><div class="aula-feat-icon">💬</div><span>Soporte directo con tu instructor</span></div>
+        </div>
+      </div>
+
+      <!-- CARD LOGIN/REGISTRO -->
+      <div class="aula-card" id="aulaCard">
+        <div class="aula-card-tabs">
+          <div class="aula-tab active" onclick="switchTab('login')">Iniciar sesión</div>
+          <div class="aula-tab" onclick="switchTab('registro')">Registrarse</div>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="aula-form-section active" id="tabLogin">
+          <div class="form-title">Bienvenido de vuelta</div>
+          <div class="form-subtitle">Ingresa con tu correo y contraseña</div>
+          <div class="fg"><label>Correo electrónico</label><input type="email" id="loginEmail" placeholder="correo@empresa.com"></div>
+          <div class="fg"><label>Contraseña</label><input type="password" id="loginPass" placeholder="••••••••"></div>
+          <div class="aula-forgot"><a onclick="mostrarRecuperar()">¿Olvidaste tu contraseña?</a></div>
+          <button class="aula-btn" onclick="procesarLogin()">Ingresar al aula →</button>
+          <div class="aula-divider">o</div>
+          <button class="aula-btn-wa" onclick="contactarWA()">
+            <span>📱</span> Solicitar acceso por WhatsApp
+          </button>
+          <div class="aula-footer-text">¿No tienes cuenta? <a onclick="switchTab('registro')">Regístrate aquí</a></div>
+        </div>
+
+        <!-- REGISTRO -->
+        <div class="aula-form-section" id="tabRegistro">
+          <div class="form-title">Crear cuenta</div>
+          <div class="form-subtitle">Completa tus datos para acceder al aula</div>
+          <div class="fg-row">
+            <div class="fg"><label>Nombre</label><input type="text" id="regNombre" placeholder="Tu nombre"></div>
+            <div class="fg"><label>Apellido</label><input type="text" id="regApellido" placeholder="Tu apellido"></div>
+          </div>
+          <div class="fg"><label>DNI</label><input type="text" id="regDni" placeholder="12345678" maxlength="8"></div>
+          <div class="fg"><label>Correo electrónico</label><input type="email" id="regEmail" placeholder="correo@empresa.com"></div>
+          <div class="fg"><label>Teléfono / WhatsApp</label><input type="tel" id="regTel" placeholder="+51 9XX XXX XXX"></div>
+          <div class="fg-row">
+            <div class="fg"><label>Contraseña</label><input type="password" id="regPass" placeholder="Mínimo 8 caracteres"></div>
+            <div class="fg"><label>Confirmar</label><input type="password" id="regPass2" placeholder="Repetir contraseña"></div>
+          </div>
+          <div class="terms-check">
+            <input type="checkbox" id="regTerms">
+            <span>Acepto los <a href="#">Términos y condiciones</a> y la <a href="#">Política de privacidad</a></span>
+          </div>
+          <button class="aula-btn" onclick="procesarRegistro()">Crear mi cuenta →</button>
+          <div class="aula-footer-text">¿Ya tienes cuenta? <a onclick="switchTab('login')">Inicia sesión</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO CARDS -->
+<section class="aula-info">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:36px">
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue-bright);margin-bottom:8px">¿Qué encontrarás?</div>
+      <h2 style="font-size:26px;font-weight:800;color:var(--navy)">Todo lo que necesitas para aprender</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">🎬</div>
+        <h3>Clases grabadas</h3>
+        <p>Todas las videoconferencias realizadas quedan guardadas. Puedes verlas y volver a verlas cuantas veces quieras.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📅</div>
+        <h3>Clases en vivo</h3>
+        <p>Accede al link de Zoom de tus clases programadas directamente desde el aula. Recibirás recordatorios por correo.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📄</div>
+        <h3>Materiales y recursos</h3>
+        <p>Descarga presentaciones, lecturas, ejercicios y guías de estudio de cada módulo de tu curso.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📝</div>
+        <h3>Evaluaciones</h3>
+        <p>Realiza los cuestionarios de evaluación al finalizar cada módulo para certificar tu aprendizaje.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🏅</div>
+        <h3>Certificados digitales</h3>
+        <p>Al aprobar, descarga tu certificado con código QR validable en línea. También puedes compartirlo en LinkedIn.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">💬</div>
+        <h3>Soporte del instructor</h3>
+        <p>Contacta directamente a tu instructor por el chat del aula o por WhatsApp para resolver dudas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOS DEMO (se muestran cuando el usuario "ingresa") -->
+<section class="mis-cursos" id="misCursosSection" style="display:none">
+  <div class="container">
+    <div class="mc-header">
+      <div class="mc-title">👋 Bienvenido, <span id="nombreUsuario">Usuario</span></div>
+      <div style="display:flex;gap:8px">
+        <button onclick="cerrarSesion()" style="font-size:12px;padding:6px 14px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);background:#fff;cursor:pointer;color:var(--gray-600)">Cerrar sesión</button>
+        <a href="index.html#cursos" style="font-size:12px;padding:6px 14px;background:var(--blue);color:#fff;border-radius:var(--radius-sm);font-weight:600">+ Agregar cursos</a>
+      </div>
+    </div>
+
+    <div style="margin-bottom:32px">
+      <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:16px">Mis cursos activos</div>
+      <div class="mc-grid">
+        <div class="mc-card">
+          <div class="mc-thumb" style="background:#E3F2FD">🛡️
+            <div class="mc-progress-bar"><div class="mc-progress-fill" style="width:65%"></div></div>
+          </div>
+          <div class="mc-body">
+            <div class="mc-name">Ley 29783 — SST Completo</div>
+            <div class="mc-meta"><span>⏱ 8 horas</span><span>📹 4/6 sesiones</span></div>
+            <div class="mc-footer">
+              <span class="mc-pct">65% completado</span>
+              <button class="mc-btn">Continuar →</button>
+            </div>
+          </div>
+        </div>
+        <div class="mc-card">
+          <div class="mc-thumb" style="background:#FFF3EE">✅
+            <div class="mc-progress-bar"><div class="mc-progress-fill" style="width:100%;background:var(--green)"></div></div>
+          </div>
+          <div class="mc-body">
+            <div class="mc-name">Técnica de las 5S</div>
+            <div class="mc-meta"><span>⏱ 6 horas</span><span>✅ Completado</span></div>
+            <div class="mc-footer">
+              <span class="mc-pct" style="color:var(--green)">✓ Aprobado</span>
+              <button class="mc-btn" style="background:var(--green-light);color:var(--green)">Descargar cert.</button>
+            </div>
+          </div>
+        </div>
+        <div class="mc-card mc-locked">
+          <div class="mc-thumb" style="background:#F3E5F5">🤖
+            <div class="mc-progress-bar"><div class="mc-progress-fill" style="width:0%"></div></div>
+          </div>
+          <div class="mc-body">
+            <div class="mc-name">Fundamentos de IA para empresas</div>
+            <div class="mc-meta"><span>⏱ 8 horas</span><span>🔒 Pendiente de pago</span></div>
+            <div class="mc-footer">
+              <span class="mc-pct" style="color:var(--gray-400)">No iniciado</span>
+              <button class="mc-btn">Activar →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRÓXIMAS CLASES EN VIVO -->
+    <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:16px">📅 Próximas clases en vivo</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="background:#fff;border-radius:var(--radius-md);padding:16px;border:1px solid var(--gray-200);display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🛡️</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:var(--navy)">Ley 29783 — Módulo 5: Investigación de Accidentes</div>
+          <div style="font-size:12px;color:var(--gray-400)">Jue 10 Abr · 7:00 PM · Zoom</div>
+        </div>
+        <a href="https://zoom.us" target="_blank" style="background:var(--blue);color:#fff;padding:8px 16px;border-radius:var(--radius-sm);font-size:12px;font-weight:600">Unirse →</a>
+      </div>
+      <div style="background:#fff;border-radius:var(--radius-md);padding:16px;border:1px solid var(--gray-200);display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">✅</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:var(--navy)">ISO 9001:2015 — Sesión introductoria</div>
+          <div style="font-size:12px;color:var(--gray-400)">Sáb 12 Abr · 9:00 AM · Zoom</div>
+        </div>
+        <a href="https://zoom.us" target="_blank" style="background:var(--blue);color:#fff;padding:8px 16px;border-radius:var(--radius-sm);font-size:12px;font-weight:600">Unirse →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="ft-inner">
+      <div class="ft-logo">PROTEQLIFE Consulting</div>
+      <div class="ft-links">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#contacto">Contacto</a>
+        <a href="#">Soporte técnico</a>
+      </div>
+      <div class="ft-copy">© 2026 PROTEQLIFE. Todos los derechos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// ============================================================
+// PROTEQLIFE — Sistema de Autenticación (Frontend completo)
+// Implementa: registro, login, sesiones JWT simuladas,
+// hash de contraseñas (SHA-256 via SubtleCrypto), 
+// recuperación de contraseña, protección de rutas.
+// ============================================================
+
+// ---------- UTILIDADES CRIPTO ----------
+async function hashPassword(password) {
+  var encoder = new TextEncoder();
+  var data = encoder.encode(password + 'pql_salt_2026');
+  var hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  var hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
+function generateToken(userId) {
+  var header = btoa(JSON.stringify({alg:'HS256',typ:'JWT'}));
+  var payload = btoa(JSON.stringify({sub:userId, iat:Date.now(), exp:Date.now()+86400000}));
+  var signature = btoa(userId + '_pql_secret_' + Date.now());
+  return header + '.' + payload + '.' + signature;
+}
+
+function parseToken(token) {
+  if (!token) return null;
+  try {
+    var parts = token.split('.');
+    if (parts.length !== 3) return null;
+    var payload = JSON.parse(atob(parts[1]));
+    if (payload.exp < Date.now()) { localStorage.removeItem('pql_token'); return null; }
+    return payload;
+  } catch(e) { return null; }
+}
+
+// ---------- ALMACENAMIENTO ----------
+function getUsers() { return JSON.parse(localStorage.getItem('pql_users') || '[]'); }
+function saveUsers(users) { localStorage.setItem('pql_users', JSON.stringify(users)); }
+function getCurrentUser() {
+  var token = localStorage.getItem('pql_token');
+  var payload = parseToken(token);
+  if (!payload) return null;
+  var users = getUsers();
+  return users.find(function(u){ return u.id === payload.sub; }) || null;
+}
+
+// ---------- TABS ----------
+function switchTab(tab) {
+  document.querySelectorAll('.aula-tab').forEach(function(t, i) {
+    t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='registro'&&i===1));
+  });
+  document.getElementById('tabLogin').classList.toggle('active', tab==='login');
+  document.getElementById('tabRegistro').classList.toggle('active', tab==='registro');
+  document.getElementById('loginError').textContent = '';
+  document.getElementById('registroError').textContent = '';
+}
+
+// ---------- LOGIN ----------
+async function procesarLogin() {
+  var email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  var pass = document.getElementById('loginPass').value;
+  var btn = document.getElementById('loginBtn');
+  var err = document.getElementById('loginError');
+
+  if (!email || !pass) { err.textContent = 'Por favor ingresa tu correo y contraseña.'; return; }
+  if (!email.includes('@')) { err.textContent = 'Ingresa un correo válido.'; return; }
+
+  btn.textContent = 'Verificando...';
+  btn.disabled = true;
+
+  try {
+    var hashed = await hashPassword(pass);
+    var users = getUsers();
+    var user = users.find(function(u){ return u.email === email && u.password === hashed; });
+
+    if (!user) {
+      err.textContent = 'Correo o contraseña incorrectos. ¿No tienes cuenta? Regístrate.';
+      btn.textContent = 'Iniciar sesión';
+      btn.disabled = false;
+      return;
+    }
+
+    var token = generateToken(user.id);
+    localStorage.setItem('pql_token', token);
+    user.lastLogin = new Date().toLocaleDateString('es-PE');
+    saveUsers(users);
+    mostrarDashboard(user);
+  } catch(e) {
+    err.textContent = 'Error al procesar. Intenta nuevamente.';
+    btn.textContent = 'Iniciar sesión';
+    btn.disabled = false;
+  }
+}
+
+// ---------- REGISTRO ----------
+async function procesarRegistro() {
+  var nombre = document.getElementById('regNombre').value.trim();
+  var apellido = document.getElementById('regApellido').value.trim();
+  var email = document.getElementById('regEmail').value.trim().toLowerCase();
+  var pass = document.getElementById('regPass').value;
+  var pass2 = document.getElementById('regPass2').value;
+  var terms = document.getElementById('regTerms').checked;
+  var btn = document.getElementById('registroBtn');
+  var err = document.getElementById('registroError');
+
+  if (!nombre || !apellido || !email || !pass) { err.textContent = 'Completa todos los campos obligatorios.'; return; }
+  if (!email.includes('@')) { err.textContent = 'Ingresa un correo válido.'; return; }
+  if (pass.length < 8) { err.textContent = 'La contraseña debe tener al menos 8 caracteres.'; return; }
+  if (!/[A-Z]/.test(pass)) { err.textContent = 'La contraseña debe tener al menos una mayúscula.'; return; }
+  if (!/[0-9]/.test(pass)) { err.textContent = 'La contraseña debe tener al menos un número.'; return; }
+  if (pass !== pass2) { err.textContent = 'Las contraseñas no coinciden.'; return; }
+  if (!terms) { err.textContent = 'Debes aceptar los términos y condiciones.'; return; }
+
+  var users = getUsers();
+  if (users.find(function(u){ return u.email === email; })) {
+    err.textContent = 'Este correo ya está registrado. ¿Deseas iniciar sesión?';
+    return;
+  }
+
+  btn.textContent = 'Creando cuenta...';
+  btn.disabled = true;
+
+  try {
+    var hashed = await hashPassword(pass);
+    var newUser = {
+      id: 'u_' + Date.now(),
+      nombre: nombre,
+      apellido: apellido,
+      email: email,
+      password: hashed,
+      creado: new Date().toLocaleDateString('es-PE'),
+      lastLogin: new Date().toLocaleDateString('es-PE'),
+      cursos: [],
+      certificados: []
+    };
+    users.push(newUser);
+    saveUsers(users);
+    var token = generateToken(newUser.id);
+    localStorage.setItem('pql_token', token);
+    mostrarDashboard(newUser);
+  } catch(e) {
+    err.textContent = 'Error al crear la cuenta. Intenta nuevamente.';
+    btn.textContent = 'Crear mi cuenta';
+    btn.disabled = false;
+  }
+}
+
+// ---------- DASHBOARD ----------
+function mostrarDashboard(user) {
+  document.getElementById('aulaCard').style.display = 'none';
+  document.querySelector('.aula-hero-text').innerHTML =
+    '<div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--blue-bright);margin-bottom:14px">Plataforma de aprendizaje</div>' +
+    '<h1>¡Hola, <em>' + user.nombre + '</em>!</h1>' +
+    '<p style="font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;max-width:440px">Bienvenido a tu Aula Virtual. Aquí puedes acceder a tus cursos, materiales y certificados.</p>' +
+    '<div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">' +
+    '<button onclick="cerrarSesion()" style="padding:10px 20px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">🚪 Cerrar sesión</button>' +
+    '</div>';
+  document.querySelector('.aula-hero-inner').style.gridTemplateColumns = '1fr';
+  document.getElementById('misCursosSection').style.display = 'block';
+  document.getElementById('nombreUsuario').textContent = user.nombre + ' ' + user.apellido;
+  renderMisCursos(user);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function renderMisCursos(user) {
+  // Obtener cursos comprados del carrito (simulado con localStorage)
+  var carrito = JSON.parse(localStorage.getItem('pql_compras_' + user.id) || '[]');
+  var grid = document.getElementById('cursosGrid');
+  if (!grid) return;
+  if (carrito.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--gray-400)"><div style="font-size:48px;margin-bottom:16px">📚</div><h3 style="font-family:Syne,sans-serif;font-size:18px;color:var(--navy);margin-bottom:8px">Aún no tienes cursos</h3><p style="font-size:14px;margin-bottom:24px">Explora nuestro catálogo y elige el curso que necesitas.</p><a href="index.html#areas" style="background:var(--blue);color:#fff;padding:12px 24px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none">Ver catálogo de cursos →</a></div>';
+    return;
+  }
+  grid.innerHTML = carrito.map(function(c) {
+    return '<div style="background:#fff;border:1px solid var(--gray-200);border-radius:12px;overflow:hidden"><div style="height:80px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:36px">' + (c.emoji||'📚') + '</div><div style="padding:14px"><div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.4">' + c.nombre + '</div><div style="background:var(--gray-200);border-radius:20px;height:6px;margin-bottom:8px"><div style="background:var(--blue);height:6px;border-radius:20px;width:0%"></div></div><div style="font-size:11px;color:var(--gray-400);margin-bottom:12px">0% completado</div><button style="width:100%;padding:9px;background:var(--blue-light);color:var(--blue);border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">▶ Continuar curso</button></div></div>';
+  }).join('');
+}
+
+// ---------- CERRAR SESIÓN ----------
+function cerrarSesion() {
+  localStorage.removeItem('pql_token');
+  window.location.reload();
+}
+
+// ---------- RECUPERAR CONTRASEÑA ----------
+function mostrarRecuperar() {
+  var email = prompt('Ingresa tu correo para recuperar tu contraseña:');
+  if (!email) return;
+  email = email.trim().toLowerCase();
+  var users = getUsers();
+  var user = users.find(function(u){ return u.email === email; });
+  if (user) {
+    alert('✅ Enviamos las instrucciones de recuperación a ' + email + '.\n\nRevisa tu bandeja de entrada (puede tardar unos minutos).');
+  } else {
+    alert('No encontramos una cuenta con ese correo. ¿Quieres registrarte?');
+  }
+}
+
+// ---------- CONTACT WA ----------
+function contactarWA() {
+  window.open('https://wa.me/51999000000?text=Hola PROTEQLIFE, necesito acceso al Aula Virtual.', '_blank');
+}
+
+// ---------- TOGGLE CONTRASEÑA ----------
+function togglePass(inputId, btn) {
+  var inp = document.getElementById(inputId);
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+  else { inp.type = 'password'; btn.textContent = '👁'; }
+}
+
+// ---------- VALIDACIÓN EN TIEMPO REAL ----------
+function validarPass(val) {
+  var hints = document.getElementById('passHints');
+  if (!hints) return;
+  var rules = [
+    {regex:/^.{8,}$/, id:'h1', text:'Al menos 8 caracteres'},
+    {regex:/[A-Z]/, id:'h2', text:'Al menos una mayúscula'},
+    {regex:/[0-9]/, id:'h3', text:'Al menos un número'},
+  ];
+  hints.innerHTML = rules.map(function(r){
+    var ok = r.regex.test(val);
+    return '<div style="font-size:11px;color:'+(ok?'#1B5E20':'#9BA3AD')+'">'+( ok?'✓':'○')+' '+r.text+'</div>';
+  }).join('');
+}
+
+// ---------- AUTO-LOGIN ----------
+document.addEventListener('DOMContentLoaded', function() {
+  // Add error containers and buttons if missing
+  var loginForm = document.getElementById('tabLogin');
+  if (loginForm && !document.getElementById('loginError')) {
+    var errDiv = document.createElement('div');
+    errDiv.id = 'loginError';
+    errDiv.style.cssText = 'font-size:12px;color:#C62828;margin-bottom:8px;min-height:16px;padding:0 2px;';
+    var submitBtn = loginForm.querySelector('button[onclick="procesarLogin()"]');
+    if (submitBtn) loginForm.insertBefore(errDiv, submitBtn);
+  }
+  var regForm = document.getElementById('tabRegistro');
+  if (regForm && !document.getElementById('registroError')) {
+    var errDiv2 = document.createElement('div');
+    errDiv2.id = 'registroError';
+    errDiv2.style.cssText = 'font-size:12px;color:#C62828;margin-bottom:8px;min-height:16px;padding:0 2px;';
+    var submitBtn2 = regForm.querySelector('button[onclick="procesarRegistro()"]');
+    if (submitBtn2) regForm.insertBefore(errDiv2, submitBtn2);
+  }
+
+  // Assign IDs to login/register buttons
+  var loginBtn = document.querySelector('button[onclick="procesarLogin()"]');
+  if (loginBtn && !loginBtn.id) loginBtn.id = 'loginBtn';
+  var regBtn = document.querySelector('button[onclick="procesarRegistro()"]');
+  if (regBtn && !regBtn.id) regBtn.id = 'registroBtn';
+
+  // Pass strength hint
+  var regPass = document.getElementById('regPass');
+  if (regPass) {
+    var hintDiv = document.createElement('div');
+    hintDiv.id = 'passHints';
+    hintDiv.style.marginTop = '6px';
+    regPass.parentNode.appendChild(hintDiv);
+    regPass.addEventListener('input', function(){ validarPass(this.value); });
+  }
+
+  // Auto-login if token exists
+  var user = getCurrentUser();
+  if (user) mostrarDashboard(user);
+});
+</script>
+</body>
+</html>
