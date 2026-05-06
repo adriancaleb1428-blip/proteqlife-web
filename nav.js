@@ -14,8 +14,8 @@
   <div class="nav-top-bar">
     <div class="container">
       <div class="nav-top-inner">
-        <span>📧 informes@proteqlife.com</span>
-        <span>📱 +51 999 000 000</span>
+        <span>📧 analista.procesos@proteqlife.com.pe</span>
+        <span>📱 +51 950 950 304</span>
         <span>🕐 Lun–Vie 8am–6pm</span>
       </div>
     </div>
