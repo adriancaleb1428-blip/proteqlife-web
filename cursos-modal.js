@@ -22,7 +22,7 @@ var CURSOS_DB = {
     desc:'Marco legal peruano en SST. Obligaciones del empleador, derechos del trabajador y sanciones por incumplimiento.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:50, precioOld:80,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Antecedentes y contexto de la SST en Perú','Marco legal: Ley 29783 y D.S. 005-2012-TR','Principios de la seguridad y salud en el trabajo','Derechos y obligaciones del trabajador','Obligaciones del empleador y sanciones','Rol del supervisor y comité de SST','Documentación mínima requerida por ley']
   },
   'gestion-accidentes': {
@@ -31,7 +31,7 @@ var CURSOS_DB = {
     desc:'Procedimientos de notificación, investigación y registro de accidentes laborales conforme a la norma peruana.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:60, precioOld:90,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Definición y clasificación de accidentes','Obligación de notificación al MTPE','Procedimiento de investigación','Árbol de causas y 5 Por Qué','Registro y estadísticas','Medidas correctivas y seguimiento']
   },
   'gestion-incidentes': {
@@ -40,7 +40,7 @@ var CURSOS_DB = {
     desc:'Clasificación, registro y análisis de incidentes para la prevención de accidentes en el trabajo.',
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido', precio:55, precioOld:80,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Diferencia: accidente vs incidente vs incidente peligroso','Clasificación según la norma peruana','Procedimiento de reporte inmediato','Análisis de causas y lecciones aprendidas','Estadísticas e indicadores']
   },
   'iperc': {
@@ -49,7 +49,7 @@ var CURSOS_DB = {
     desc:'Metodología IPERC completa: matrices de riesgo y medidas de control conforme a la normativa vigente.',
     duracion:'10 horas', nivel:'Básico-Intermedio', certificado:'Incluido', precio:70, precioOld:100,
     tags:[{txt:'En vivo',cls:'tag-vivo'},{txt:'Nuevo',cls:'tag-nuevo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Conceptos: peligro, riesgo y daño','Tipos de peligros (físicos, químicos, biológicos)','Metodología IPERC paso a paso','Elaboración de la matriz de riesgos','Jerarquía de controles','IPERC continuo en campo']
   },
   'comite-supervisor-sst': {
@@ -58,7 +58,7 @@ var CURSOS_DB = {
     desc:'Funciones, obligaciones y proceso de elección del Comité o Supervisor de SST.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:65, precioOld:null,
     tags:[{txt:'Presencial',cls:'tag-presencial'}],
-    modalidades:['Presencial (Lima)','En vivo (Zoom)','Grabado (Aula Virtual)'],
+    modalidades:['Presencial','En vivo','Grabado'],
     temas:['¿Cuándo aplica Comité y cuándo Supervisor?','Proceso de elección de representantes','Funciones y responsabilidades','Libro de actas y reuniones','Reglamento interno']
   },
   'ats': {
@@ -67,7 +67,7 @@ var CURSOS_DB = {
     desc:'Elaboración de ATS, identificación de riesgos por tarea y medidas preventivas.',
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido', precio:50, precioOld:75,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['¿Qué es el ATS y cuándo se usa?','Pasos para elaborar un ATS','Identificación de pasos críticos','Peligros y riesgos por paso','Medidas de control y responsables']
   },
   'investigacion-accidentes': {
@@ -76,7 +76,7 @@ var CURSOS_DB = {
     desc:'Árbol de causas, metodología 5 Por Qué y análisis de causas raíz.',
     duracion:'8 horas', nivel:'Intermedio', certificado:'Incluido', precio:65, precioOld:90,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Principios de investigación','Metodología 5 Por Qué','Diagrama Ishikawa','Árbol de causas','Informe de investigación']
   },
   'epps': {
@@ -85,7 +85,7 @@ var CURSOS_DB = {
     desc:'Gestión del equipo de protección personal: registros, responsabilidades y reposición.',
     duracion:'4 horas', nivel:'Básico', certificado:'Incluido', precio:40, precioOld:60,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Obligación legal de entrega','Tipos de EPP por riesgo','Registro de entrega y firma','Conservación y vida útil','Procedimiento de reposición']
   },
   'seguridad-comportamiento': {
@@ -94,7 +94,7 @@ var CURSOS_DB = {
     desc:'Cultura de seguridad, observación de comportamientos y refuerzo positivo.',
     duracion:'10 horas', nivel:'Intermedio', certificado:'Incluido', precio:70, precioOld:100,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Fundamentos del comportamiento en SST','Triángulo de conducta segura','Proceso de observación conductual','Retroalimentación positiva','Implementación de programa SBC']
   },
   'ergonomia': {
@@ -103,7 +103,7 @@ var CURSOS_DB = {
     desc:'Principios ergonómicos, evaluación postural y prevención de trastornos musculoesqueléticos.',
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido', precio:55, precioOld:80,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Principios básicos de ergonomía','Evaluación postural (REBA, RULA)','Ergonomía en oficinas','Manejo manual de cargas','Plan de intervención ergonómica']
   },
   'primeros-auxilios': {
@@ -112,7 +112,7 @@ var CURSOS_DB = {
     desc:'RCP, atención de heridas, quemaduras y emergencias médicas en el entorno laboral.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:55, precioOld:null,
     tags:[{txt:'Presencial',cls:'tag-presencial'}],
-    modalidades:['Presencial (Lima)','En vivo (Zoom)','Grabado (Aula Virtual)'],
+    modalidades:['Presencial','En vivo','Grabado'],
     temas:['RCP básico para adultos','Uso del DEA','Manejo de heridas y hemorragias','Quemaduras y fracturas','Plan de evacuación']
   },
   'prevencion-burnout': {
@@ -121,7 +121,7 @@ var CURSOS_DB = {
     desc:'Identificación, prevención y manejo del síndrome de agotamiento laboral.',
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido', precio:50, precioOld:75,
     tags:[{txt:'Grabado',cls:'tag-grabado'},{txt:'Nuevo',cls:'tag-nuevo'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['¿Qué es el Burnout?','Señales de alerta','Herramientas de evaluación (MBI)','Estrategias individuales de prevención','Plan de intervención organizacional']
   },
   'ley-27942': {
@@ -130,7 +130,7 @@ var CURSOS_DB = {
     desc:'Marco normativo, procedimientos de denuncia y obligaciones del empleador.',
     duracion:'4 horas', nivel:'Básico', certificado:'Incluido', precio:40, precioOld:60,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Marco legal: Ley 27942 y modificatorias','Definición y tipos de hostigamiento','Canal de denuncias','Proceso de investigación','Obligaciones del empleador']
   },
   'manejo-defensivo': {
@@ -139,7 +139,7 @@ var CURSOS_DB = {
     desc:'Técnicas de conducción segura, gestión del riesgo vial y prevención de accidentes.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:65, precioOld:90,
     tags:[{txt:'Presencial',cls:'tag-presencial'}],
-    modalidades:['Presencial (Lima)','En vivo (Zoom)','Grabado (Aula Virtual)'],
+    modalidades:['Presencial','En vivo','Grabado'],
     temas:['Factores de riesgo vial','Velocidad segura y distancias','Puntos ciegos','Fatiga al volante','Conducción en condiciones adversas']
   },
   'fatiga-somnolencia': {
@@ -148,7 +148,7 @@ var CURSOS_DB = {
     desc:'Impacto de la fatiga en la seguridad laboral, factores de riesgo y estrategias de prevención.',
     duracion:'4 horas', nivel:'Básico', certificado:'Incluido', precio:35, precioOld:55,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['¿Qué es la fatiga laboral?','Ciclos circadianos','Indicadores de somnolencia','Impacto en la seguridad','Estrategias de prevención']
   },
   'reuniones-sst': {
@@ -157,7 +157,7 @@ var CURSOS_DB = {
     desc:'Planificación, conducción y registro de las reuniones del Comité o Supervisor de SST.',
     duracion:'4 horas', nivel:'Básico', certificado:'Incluido', precio:35, precioOld:55,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Obligación legal de reuniones','Agenda mínima obligatoria','Conducción efectiva','Actas y registros','Seguimiento de acuerdos']
   },
   // ── CALIDAD ─────────────────────────────────────────────
@@ -167,7 +167,7 @@ var CURSOS_DB = {
     desc:'Metodología japonesa para mejorar la organización, orden y limpieza en espacios de trabajo.',
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido', precio:60, precioOld:90,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Origen e historia de las 5S','Seiri — Clasificar','Seiton — Ordenar','Seiso — Limpiar','Seiketsu — Estandarizar','Shitsuke — Autodisciplina','Auditoría de las 5S','Implementación práctica']
   },
   'iso-9001': {
@@ -176,7 +176,7 @@ var CURSOS_DB = {
     desc:'Requisitos, estructura y beneficios de la norma ISO 9001:2015 para implementar un SGC.',
     duracion:'8 horas', nivel:'Intermedio', certificado:'Incluido', precio:75, precioOld:110,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Historia y evolución ISO 9001','Estructura de Alto Nivel (HLS)','Contexto de la organización','Liderazgo y compromiso','Planificación de riesgos y oportunidades','Operación y control de procesos','Mejora continua y no conformidades']
   },
   'auditorias-internas': {
@@ -185,7 +185,7 @@ var CURSOS_DB = {
     desc:'Planificación, ejecución e informe de auditorías internas del SGC conforme ISO 19011.',
     duracion:'8 horas', nivel:'Intermedio', certificado:'Incluido', precio:70, precioOld:100,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['¿Qué es una auditoría interna?','ISO 19011:2018','Programa anual de auditorías','Plan y check-list de auditoría','Técnicas de entrevista','Identificación de no conformidades','Informe de auditoría']
   },
   'iso-14001': {
@@ -194,7 +194,7 @@ var CURSOS_DB = {
     desc:'Fundamentos del Sistema de Gestión Ambiental y requisitos de la norma ISO 14001:2015.',
     duracion:'8 horas', nivel:'Intermedio', certificado:'Incluido', precio:75, precioOld:110,
     tags:[{txt:'Grabado',cls:'tag-grabado'},{txt:'Nuevo',cls:'tag-nuevo'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Legislación ambiental peruana','Estructura ISO 14001:2015','Aspectos e impactos ambientales','Objetivos y metas ambientales','Emergencias ambientales','Integración ISO 14001 + ISO 9001']
   },
   'kpi-calidad': {
@@ -203,7 +203,7 @@ var CURSOS_DB = {
     desc:'Diseño, implementación y seguimiento de indicadores clave de desempeño.',
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido', precio:60, precioOld:85,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['¿Qué es un KPI?','Tipos de indicadores','Metodología SMART','Dashboard de indicadores','Análisis de tendencias','Acciones de mejora']
   },
   // ── DESARROLLO EMPRESARIAL & LIDERAZGO ─────────────────
@@ -213,7 +213,7 @@ var CURSOS_DB = {
     desc:'Qué es la IA, cómo funciona y cómo aplicarla en tu negocio para ser más competitivo.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:80, precioOld:120,
     tags:[{txt:'Grabado',cls:'tag-grabado'},{txt:'Nuevo',cls:'tag-nuevo'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['¿Qué es la Inteligencia Artificial?','Machine Learning y Deep Learning','IA generativa: ChatGPT, Gemini, Copilot','Automatización con herramientas IA','IA aplicada a la gestión empresarial','Consideraciones éticas y legales']
   },
   'marketing-digital': {
@@ -222,7 +222,7 @@ var CURSOS_DB = {
     desc:'Estrategias digitales, redes sociales, Google Ads y técnicas de ventas para tu negocio.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:75, precioOld:110,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Ecosistema del marketing digital','SEO y posicionamiento','Google Ads y Meta Ads','Estrategia de contenidos','Técnicas de ventas y cierre','Métricas y analítica digital']
   },
   'startup-emprendimiento': {
@@ -231,7 +231,7 @@ var CURSOS_DB = {
     desc:'Valida tu idea, crea tu modelo de negocio y lanza tu startup con estrategias probadas.',
     duracion:'10 horas', nivel:'Básico', certificado:'Incluido', precio:99, precioOld:150,
     tags:[{txt:'Grabado',cls:'tag-grabado'},{txt:'Nuevo',cls:'tag-nuevo'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Mentalidad emprendedora','Ideación y validación de idea','Design Thinking','Business Model Canvas','Producto Mínimo Viable (MVP)','Pitch y presentación a inversores']
   },
   'talento-humano': {
@@ -240,7 +240,7 @@ var CURSOS_DB = {
     desc:'Liderazgo situacional, inteligencia emocional y formación de equipos de alto rendimiento.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:65, precioOld:100,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Liderazgo situacional','Inteligencia emocional','Comunicación efectiva','Formación de equipos de alto rendimiento','Gestión del conflicto','Feedback constructivo']
   },
   'habilidades-blandas': {
@@ -249,7 +249,7 @@ var CURSOS_DB = {
     desc:'Comunicación efectiva, inteligencia emocional, trabajo en equipo y resolución de conflictos.',
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido', precio:65, precioOld:100,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Comunicación asertiva','Escucha activa','Inteligencia emocional en el trabajo','Resolución de conflictos','Trabajo en equipo','Gestión del tiempo']
   },
   'marco-legal': {
@@ -258,7 +258,7 @@ var CURSOS_DB = {
     desc:'Tipos de empresa, contratos laborales, INDECOPI y protección al consumidor.',
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido', precio:55, precioOld:80,
     tags:[{txt:'En vivo',cls:'tag-vivo'}],
-    modalidades:['En vivo (Zoom)','Grabado (Aula Virtual)','Presencial (Lima)'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Tipos de empresa: SAC, SRL, EIRL','Proceso de formalización','Contratos laborales','INDECOPI y protección al consumidor','Propiedad intelectual básica']
   },
   'tributacion-basica': {
@@ -267,7 +267,7 @@ var CURSOS_DB = {
     desc:'Regímenes tributarios, IGV, impuesto a la renta y planillas en Perú.',
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido', precio:55, precioOld:80,
     tags:[{txt:'Grabado',cls:'tag-grabado'}],
-    modalidades:['Grabado (Aula Virtual)','En vivo (Zoom)','Presencial (Lima)'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Regímenes tributarios: NRUS, RER, RMT, RG','IGV: obligaciones y declaraciones','Impuesto a la Renta','Planillas y beneficios sociales','SUNAT online']
   },
 
@@ -278,7 +278,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido',
     precio:50, precioOld:75,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Marco normativo Ley 27942','Diseño del protocolo interno','Comité de Intervención: funciones','Recepción y registro de denuncias','Procedimiento de investigación','Medidas de protección a la víctima','Resolución del caso y sanciones','Campañas de sensibilización']
   },
   'ciclo-deming': {
@@ -288,7 +288,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido',
     precio:50, precioOld:75,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Historia del PHVA: Shewhart y Deming','Planificar: diagnóstico y objetivos','Hacer: implementación del plan','Verificar: medición y análisis','Actuar: estandarización','Aplicación en ISO 9001','Caso práctico en empresa peruana']
   },
   'cantidad-calidad': {
@@ -298,7 +298,7 @@ var CURSOS_DB = {
     duracion:'4 horas', nivel:'Básico', certificado:'Incluido',
     precio:40, precioOld:60,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Calidad vs productividad','Costo de la no calidad','Modelo PAF','Herramientas de control','Indicadores de calidad','Cultura de calidad']
   },
   'info-documentada': {
@@ -308,7 +308,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico-Intermedio', certificado:'Incluido',
     precio:55, precioOld:80,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Información documentada ISO 7.5','Documentos vs registros','Sistema de codificación','Control de versiones','Distribución controlada','Retención y disposición','Práctica: procedimiento documentado']
   },
   'auditoria-interna': {
@@ -318,7 +318,7 @@ var CURSOS_DB = {
     duracion:'12 horas', nivel:'Intermedio', certificado:'Incluido',
     precio:110, precioOld:150,
     tags:[{txt:'Presencial', cls:'tag-presencial'}],
-    modalidades:['Presencial — Lima','En vivo — Zoom','Grabado — Aula Virtual'],
+    modalidades:['Presencial','En vivo','Grabado'],
     temas:['Principios ISO 19011:2018','Tipos de auditoría','Plan de auditoría','Checklists de verificación','Recolección de evidencia','Hallazgos y no conformidades','Informe de auditoría','Seguimiento de acciones correctivas']
   },
   'anticorrupcion': {
@@ -328,7 +328,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido',
     precio:50, precioOld:75,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Soborno y corrupción: definiciones','ISO 37001 antisoborno','Ley 30424 en Perú','Evaluación de riesgos','Controles antisoborno','Canal de denuncias','Debida diligencia','Cultura ética e integridad']
   },
   'kpis': {
@@ -338,7 +338,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido',
     precio:65, precioOld:90,
     tags:[{txt:'En vivo', cls:'tag-vivo'},{txt:'Nuevo', cls:'tag-nuevo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['¿Qué es un KPI?','Metodología SMART','Tipos de KPI por área','Fichas de indicador','Dashboard básico Excel','Análisis de desviaciones','Revisión por la dirección']
   },
   'ia-gestion': {
@@ -348,7 +348,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido',
     precio:75, precioOld:100,
     tags:[{txt:'Grabado', cls:'tag-grabado'},{txt:'Nuevo', cls:'tag-nuevo'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['IA en gestión empresarial','IA en control de calidad','Análisis predictivo para SST','ChatGPT para no conformidades','Automatización de auditorías','Herramientas no-code con IA','Casos en empresas peruanas']
   },
   'chatgpt-productividad': {
@@ -358,7 +358,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido',
     precio:65, precioOld:100,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['IA generativa 2024-2025','Ingeniería de prompts avanzada','ChatGPT para redacción','Gemini con Google Workspace','Microsoft Copilot','Análisis de datos con IA','Automatización de tareas','Casos prácticos por profesión']
   },
   'automatizacion-ia': {
@@ -368,7 +368,7 @@ var CURSOS_DB = {
     duracion:'10 horas', nivel:'Básico-Intermedio', certificado:'Incluido',
     precio:90, precioOld:130,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Ecosistema no-code: Make y Zapier','Make: escenarios básicos','Zapier: automatización de apps','Notion AI para proyectos','Airtable con automatizaciones','ChatGPT API vía Make','Chatbots sin código','Caso práctico completo']
   },
   'ciberseguridad-basica': {
@@ -378,7 +378,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido',
     precio:70, precioOld:100,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Amenazas digitales principales','Phishing y ransomware','Gestión de contraseñas','Autenticación 2FA','Seguridad en Wi-Fi','Backup: regla 3-2-1','Política de seguridad digital','Respuesta ante incidentes']
   },
   'ventas-efectivas': {
@@ -388,7 +388,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido',
     precio:70, precioOld:100,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Mentalidad del vendedor','Embudo de ventas','Prospección efectiva','SPIN Selling','Presentación de valor','Manejo de objeciones','10 técnicas de cierre','Fidelización postventa']
   },
   'redes-sociales': {
@@ -398,7 +398,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido',
     precio:65, precioOld:95,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Estrategia de redes sociales','Instagram para negocios','Facebook: páginas y grupos','LinkedIn B2B y marca personal','TikTok empresarial','Calendario editorial','Canva para redes sociales','Métricas y analítica']
   },
   'atencion-cliente': {
@@ -408,7 +408,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido',
     precio:55, precioOld:80,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Experiencia del cliente (CX)','Customer journey mapping','Comunicación y escucha activa','Canales de atención múltiple','Manejo de quejas y reclamos','Clientes difíciles: desescalada','NPS: medición y mejora','Estrategias de fidelización']
   },
   'plan-negocios': {
@@ -418,7 +418,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido',
     precio:65, precioOld:90,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Business Model Canvas: 9 bloques','Propuesta de valor','Análisis de mercado TAM/SAM/SOM','Análisis competitivo y FODA','Modelo de ingresos y costos','Proyecciones financieras 3 años','Plan de marketing','Pitch para inversores']
   },
   'financiamiento-startup': {
@@ -428,7 +428,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido',
     precio:60, precioOld:85,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Ecosistema emprendedor peruano','Bootstrapping','Startupperú y COFIDE','Capital semilla y convocatorias','Inversores ángeles','Venture Capital Latam','Crowdfunding','El pitch deck ganador']
   },
   'costos-empresariales': {
@@ -438,7 +438,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido',
     precio:70, precioOld:100,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Costos fijos vs variables','Costeo directo y absorción','Punto de equilibrio','Margen de contribución','Presupuesto anual','Flujo de caja','Análisis de variaciones','Indicadores: ROI, ROE, margen']
   },
   'control-interno': {
@@ -448,7 +448,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Intermedio', certificado:'Incluido',
     precio:80, precioOld:120,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Marco COSO: 5 componentes','Entorno de control','Evaluación de riesgos','Controles preventivos y detectivos','Información y comunicación','Supervisión y monitoreo','Fraude: tipos y señales','Control en procesos clave']
   },
   'seguridad-empresarial': {
@@ -458,7 +458,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido',
     precio:85, precioOld:130,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Grabado — Aula Virtual','Presencial — Lima'],
+    modalidades:['En vivo','Grabado','Presencial'],
     temas:['Seguridad empresarial integral','Análisis de riesgos','Seguridad física y perímetros','Sistemas CCTV','Control de acceso biométrico','Planes de emergencia','Seguridad de la información','Coordinación con autoridades']
   },
   'proteccion-datos': {
@@ -468,7 +468,7 @@ var CURSOS_DB = {
     duracion:'6 horas', nivel:'Básico', certificado:'Incluido',
     precio:50, precioOld:null,
     tags:[{txt:'Grabado', cls:'tag-grabado'}],
-    modalidades:['Grabado — Aula Virtual','En vivo — Zoom','Presencial — Lima'],
+    modalidades:['Grabado','En vivo','Presencial'],
     temas:['Ley 29733 y reglamento','Datos personales vs sensibles','Principios del tratamiento','Consentimiento: cómo obtenerlo','Registro de bancos ANPD','Derechos ARCO','Transferencia internacional','Sanciones y casos Perú']
   },
   'formacion-equipos': {
@@ -478,7 +478,7 @@ var CURSOS_DB = {
     duracion:'8 horas', nivel:'Básico', certificado:'Incluido',
     precio:90, precioOld:130,
     tags:[{txt:'Presencial', cls:'tag-presencial'}],
-    modalidades:['Presencial — Lima','En vivo — Zoom','Grabado — Aula Virtual'],
+    modalidades:['Presencial','En vivo','Grabado'],
     temas:['Equipos de alto rendimiento','Modelo Tuckman: 4 etapas','Roles Belbin','Confianza y cohesión','Comunicación efectiva','Gestión de conflictos','Scrum y Kanban para equipos','Delegación y empowerment']
   },
   'mentoria-profesional': {
@@ -488,7 +488,7 @@ var CURSOS_DB = {
     duracion:'10 horas', nivel:'Intermedio', certificado:'Incluido',
     precio:95, precioOld:140,
     tags:[{txt:'En vivo', cls:'tag-vivo'}],
-    modalidades:['En vivo — Zoom','Presencial — Lima','Grabado — Aula Virtual'],
+    modalidades:['En vivo','Presencial','Grabado'],
     temas:['Mentoría vs coaching','Competencias del mentor','Modelo GROW: 4 fases','Preguntas poderosas','Escucha activa','Feedback SBI y Hamburguesa','Plan de Desarrollo Individual','Programa de mentoría interna']
   },
 
@@ -658,7 +658,7 @@ function verCurso(slug) {
 function PQL_abrirModalBasico(slug) {
   var m = document.getElementById('PQL_modal');
   if (!m) return;
-  PQL_cursoActual = { slug:slug, nombre:slug.replace(/-/g,' '), precio:0, modalidades:['En vivo (Zoom)'] };
+  PQL_cursoActual = { slug:slug, nombre:slug.replace(/-/g,' '), precio:0, modalidades:['En vivo'] };
   document.getElementById('PQL_mEmoji').textContent   = '📚';
   document.getElementById('PQL_mNombre').textContent  = slug.replace(/-/g,' ');
   document.getElementById('PQL_mDesc').textContent    = 'Información detallada próximamente.';
