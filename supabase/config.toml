@@ -1,0 +1,4 @@
+project_id = "aulanova"
+
+[functions.create-meeting-token]
+verify_jwt = true
