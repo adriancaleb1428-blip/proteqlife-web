@@ -47,7 +47,7 @@ proteqlife/
 
 - ✅ **Menú Cursos** ya no cierra al pasar al dropdown
 - ✅ **Nombres correctos** en la navegación: "Seguridad Integral", "Sist. Integrado de Gestión", "Desarrollo Empresarial & Liderazgo"
-- ✅ **Aula Virtual** en el nav va a `aula-virtual.html` (ya no a Contáctanos)
+- ✅ **Aula Consulting** abre la plataforma académica publicada en `/aula/`
 - ✅ **"Ver curso"** en los catálogos ahora redirige a `curso-detalle.html?slug=nombre-del-curso`
 - ✅ **Ficha de curso** muestra: título, descripción, temario completo, carrito y botón de compra
 - ✅ **Carrito** funcional con panel lateral, total y opciones de pago
