@@ -113,27 +113,14 @@ function fmtExpiry(el) {
   el.value = v;
 }
 function procesarPago() {
-  var n = (document.getElementById('pfNombre')||{}).value||'';
-  var t = (document.getElementById('pfTarjeta')||{}).value||'';
-  var v = (document.getElementById('pfVenc')||{}).value||'';
-  var c = (document.getElementById('pfCVV')||{}).value||'';
-  if (!n.trim()||!t.trim()||!v.trim()||!c.trim()) { alert('Completa todos los campos.'); return; }
-  if (t.replace(/\s/g,'').length < 16) { alert('Número de tarjeta incompleto.'); return; }
-  var btn = document.getElementById('pagoSubmit');
-  if (btn) { btn.disabled=true; btn.textContent='Procesando...'; }
-  setTimeout(function(){
-    cerrarPago();
-    _setCart([]);
-    _syncBadge();
-    alert('✅ ¡Pago procesado exitosamente!\n\nRecibirás acceso a tus cursos por correo.\n\nBienvenido a PROTEQLIFE Consulting.');
-    window.location.href = 'aula-virtual.html';
-  }, 2000);
+  alert('El pago en línea aún no está habilitado. No ingreses datos de tarjeta. Puedes coordinar tu inscripción por WhatsApp.');
 }
 function pagarWhatsApp() {
   var cart  = _getCart();
-  var lista = cart.map(function(c){ return '• '+(c.nombre||'')+'('+(c.precio||'')+')'; }).join('%0A');
+  var lista = cart.map(function(c){ return '• '+(c.nombre||'')+' ('+(c.precio||'')+')'; }).join('\n');
   var total = _cartTotal(cart);
-  window.open('https://wa.me/51999000000?text=Hola PROTEQLIFE, quiero inscribirme en:%0A%0A'+lista+'%0A%0ATotal: S/ '+total, '_blank');
+  var message = 'Hola PROTEQLIFE, quiero consultar mi inscripción en:\n\n' + lista + '\n\nTotal referencial: S/ ' + total;
+  window.open('https://wa.me/51950950304?text=' + encodeURIComponent(message), '_blank', 'noopener');
   cerrarCarrito();
 }
 
@@ -219,7 +206,7 @@ function _inyectarCarrito() {
           '<span class="cp-total-lbl">Total:</span>' +
           '<span class="cp-total-val" id="cpTotal">S/ 0</span>' +
         '</div>' +
-        '<button class="cp-btn-pay" onclick="abrirPago()">💳 Pagar ahora</button>' +
+        '<button class="cp-btn-pay" onclick="abrirPago()">Consultar inscripción</button>' +
         '<button class="cp-btn-wa" onclick="pagarWhatsApp()">📱 Coordinar por WhatsApp</button>' +
       '</div>' +
     '</div>' +
@@ -227,17 +214,12 @@ function _inyectarCarrito() {
     '<div class="pago-overlay" id="pagoModal">' +
       '<div class="pago-box">' +
         '<button class="pago-close" onclick="cerrarPago()">✕</button>' +
-        '<div class="pago-title">💳 Pago seguro</div>' +
-        '<div class="pago-sub">Completa tus datos para finalizar la compra</div>' +
+        '<div class="pago-title">Consulta tu inscripción</div>' +
+        '<div class="pago-sub">El pago en línea con Culqi todavía se está configurando.</div>' +
         '<div class="pago-resumen" id="pagoResumen"></div>' +
-        '<div class="pf-group"><label class="pf-label">Nombre en la tarjeta</label><input class="pf-input" id="pfNombre" type="text" placeholder="Como aparece en tu tarjeta"></div>' +
-        '<div class="pf-group"><label class="pf-label">Número de tarjeta</label><input class="pf-input" id="pfTarjeta" type="text" placeholder="1234 5678 9012 3456" maxlength="19" oninput="fmtCard(this)"></div>' +
-        '<div class="pf-row">' +
-          '<div class="pf-group"><label class="pf-label">Vencimiento</label><input class="pf-input" id="pfVenc" type="text" placeholder="MM/AA" maxlength="5" oninput="fmtExpiry(this)"></div>' +
-          '<div class="pf-group"><label class="pf-label">CVV</label><input class="pf-input" id="pfCVV" type="text" placeholder="123" maxlength="3"></div>' +
-        '</div>' +
-        '<div class="pago-secure">🔒 Pago 100% seguro y encriptado — Culqi</div>' +
-        '<button class="pago-submit" id="pagoSubmit" onclick="procesarPago()">Confirmar pago →</button>' +
+        '<p role="status">No ingreses datos de tarjeta aquí. La inscripción solo se confirmará después de verificar el pago.</p>' +
+        '<button class="pago-submit" type="button" onclick="pagarWhatsApp()">Consultar por WhatsApp →</button>' +
+        '<a href="contacto.html">Ver otros medios de contacto</a>' +
       '</div>' +
     '</div>';
   document.body.appendChild(wrap);

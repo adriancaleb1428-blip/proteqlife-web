@@ -51,7 +51,7 @@ proteqlife/
 - ✅ **"Ver curso"** en los catálogos ahora redirige a `curso-detalle.html?slug=nombre-del-curso`
 - ✅ **Ficha de curso** muestra: título, descripción, temario completo, carrito y botón de compra
 - ✅ **Carrito** funcional con panel lateral, total y opciones de pago
-- ✅ **Pago simulado** con tarjeta (conectar Culqi en producción)
+- ⏳ **Pagos en línea pendientes:** el checkout del sitio no procesa cobros hasta terminar la integración real con Culqi. No solicita datos de tarjeta ni confirma compras simuladas.
 
 ---
 
@@ -132,9 +132,7 @@ const API_URL = 'http://localhost:3000/api'; // desarrollo
 | `progreso` | Progreso por lección por usuario |
 | `certificados` | Certificados emitidos con código QR |
 
-**Usuario admin por defecto:**
-- Email: `admin@proteqlife.com`
-- Contraseña: `password` ← **¡Cambiar inmediatamente en producción!**
+**Acceso administrador:** no hay credenciales administrativas válidas que deban publicarse aquí. Crea y protege las cuentas administrativas desde el entorno de backend autorizado.
 
 ---
 

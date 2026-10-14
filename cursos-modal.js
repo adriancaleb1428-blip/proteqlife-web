@@ -4,10 +4,8 @@
  * CORRECCIONES v3:
  *  ✅ Botón carrito inyectado en la barra de nav automáticamente
  *  ✅ Panel carrito se abre al hacer click en el botón
- *  ✅ Checkout muestra opciones de pago (Tarjeta, Yape, Plin, PagoEfectivo)
- *  ✅ Tarjeta → formulario bonito con validación
- *  ✅ Yape / Plin → QR real + botón WhatsApp para enviar captura
- *  ✅ PagoEfectivo → instrucciones + código
+ *  ⏳ Checkout informativo mientras se habilita una integración de pagos real
+ *  🔒 No solicita datos de tarjeta ni confirma compras sin verificar el pago
  */
 
 // ─────────────────────────────────────────────────────────
@@ -801,6 +799,17 @@ function PQL_abrirCheckout() {
   if (totalEl) totalEl.textContent = 'S/ ' + total;
 
   var ch = document.getElementById('PQL_checkout');
+  var paymentButton = ch && ch.querySelector('.pql-pay-btn');
+  var paymentMethods = paymentButton && paymentButton.parentElement;
+  if (paymentMethods) {
+    paymentMethods.innerHTML = '<div role="status" style="grid-column:1/-1;background:#FFF7ED;border:1px solid #FED7AA;border-radius:10px;padding:16px;color:#7C2D12;font-size:13px;line-height:1.6">' +
+      '<strong>El pago en línea aún se está configurando.</strong><br>' +
+      'No ingreses datos de tarjeta ni hagas un pago desde esta pantalla. La inscripción se confirmará solo cuando el pago se verifique.' +
+      '<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">' +
+      '<a href="contacto.html" style="display:inline-flex;align-items:center;padding:10px 14px;background:#05192D;color:#fff;border-radius:8px;text-decoration:none;font-weight:700">Consultar inscripción</a>' +
+      '<button type="button" onclick="window.open(\'https://wa.me/51950950304?text=\'+encodeURIComponent(\'Hola PROTEQLIFE, quiero consultar mi inscripción en los cursos de mi carrito.\'),\'_blank\',\'noopener\')" style="padding:10px 14px;background:#fff;border:1px solid #D1D5DB;border-radius:8px;color:#05192D;font-weight:700;cursor:pointer">Escribir por WhatsApp</button>' +
+      '</div></div>';
+  }
   if (ch) ch.style.display = 'flex';
 }
 
@@ -815,46 +824,12 @@ function PQL_cerrarCheckout() {
 var PQL_metodo_actual = '';
 
 function PQL_procesarPago(metodo) {
-  PQL_metodo_actual = metodo;
-  PQL_cerrarCheckout();
-
-  if (metodo === 'yape' || metodo === 'plin') {
-    PQL_mostrarQR(metodo);
-  } else if (metodo === 'tarjeta') {
-    PQL_mostrarFormTarjeta();
-  } else if (metodo === 'efectivo') {
-    PQL_mostrarPagoEfectivo();
-  }
+  alert('Los pagos en línea aún se están configurando. No ingreses datos de tarjeta ni realices pagos desde esta pantalla.');
 }
 
 // ── TARJETA ──────────────────────────────────────────────
 function PQL_mostrarFormTarjeta() {
-  var total = PQL_totalCarrito();
-  var modal = document.getElementById('PQL_tarjetaModal');
-  if (!modal) return;
-
-  // Poblar resumen
-  var resumen = document.getElementById('PQL_tarjetaResumen');
-  if (resumen) {
-    var html = '';
-    PQL_carrito.forEach(function(i) {
-      var n = i.nombre.length > 38 ? i.nombre.substring(0,38)+'...' : i.nombre;
-      html += '<div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0">' +
-        '<span style="color:#5A6472">' + n + '</span>' +
-        '<span style="font-weight:600;color:#05192D">S/ ' + i.precio + '</span></div>';
-    });
-    html += '<div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:#05192D;border-top:1px solid #E8ECF0;margin-top:8px;padding-top:8px">' +
-      '<span>Total</span><span>S/ ' + total + '</span></div>';
-    resumen.innerHTML = html;
-  }
-
-  // Limpiar formulario
-  ['PQL_pfNombre','PQL_pfTarjeta','PQL_pfVenc','PQL_pfCVV'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.value = '';
-  });
-
-  modal.style.display = 'flex';
+  alert('El pago con tarjeta todavía no está habilitado. No ingreses datos de tarjeta.');
 }
 
 function PQL_cerrarTarjeta() {
@@ -873,73 +848,13 @@ function PQL_fmtExpiry(el) {
 }
 
 function PQL_confirmarTarjeta() {
-  var nombre  = (document.getElementById('PQL_pfNombre')?.value || '').trim();
-  var tarjeta = (document.getElementById('PQL_pfTarjeta')?.value || '').replace(/\s/g,'');
-  var venc    = (document.getElementById('PQL_pfVenc')?.value || '').trim();
-  var cvv     = (document.getElementById('PQL_pfCVV')?.value || '').trim();
-
-  var errEl = document.getElementById('PQL_tarjetaErr');
-  function showErr(msg) { if (errEl) { errEl.textContent = msg; errEl.style.display='block'; } }
-  if (errEl) errEl.style.display = 'none';
-
-  if (!nombre)             { showErr('Ingresa el nombre en la tarjeta.'); return; }
-  if (tarjeta.length < 16) { showErr('Número de tarjeta incompleto.'); return; }
-  if (!venc || venc.length < 5) { showErr('Ingresa la fecha de vencimiento.'); return; }
-  if (!cvv || cvv.length < 3)   { showErr('Ingresa el CVV.'); return; }
-
-  var btn = document.getElementById('PQL_tarjetaSubmit');
-  if (btn) { btn.disabled = true; btn.textContent = 'Procesando...'; }
-
-  setTimeout(function() {
-    PQL_cerrarTarjeta();
-    PQL_mostrarConfirmacion('Tarjeta');
-    if (btn) { btn.disabled = false; btn.textContent = 'Confirmar pago →'; }
-  }, 1800);
+  alert('Los pagos en línea aún no se han habilitado. No ingreses datos de tarjeta.');
 }
 
 // ── QR YAPE / PLIN ──────────────────────────────────────
 function PQL_mostrarQR(metodo) {
-  var total = PQL_totalCarrito();
-  var modal = document.getElementById('PQL_qrModal');
-  if (!modal) return;
-
-  var cfg = {
-    yape: {
-      nombre: 'Yape', color: '#6B2D8B', icono: '💜',
-      numero: '+51 999 000 000',
-      bg: 'linear-gradient(135deg,#6B2D8B,#9B59B6)',
-      instruccion: 'Abre Yape, toca "Pagar con QR" y escanea:',
-      qr: 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&color=6B2D8B&bgcolor=FFFFFF&data=' +
-          encodeURIComponent('PROTEQLIFE|YAPE|+51999000000|S/' + total)
-    },
-    plin: {
-      nombre: 'Plin', color: '#00A86B', icono: '💚',
-      numero: '+51 999 000 000',
-      bg: 'linear-gradient(135deg,#00A86B,#00C77F)',
-      instruccion: 'Abre Plin, toca "Pagar con QR" y escanea:',
-      qr: 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&color=00A86B&bgcolor=FFFFFF&data=' +
-          encodeURIComponent('PROTEQLIFE|PLIN|+51999000000|S/' + total)
-    }
-  };
-  var c = cfg[metodo];
-
-  // Header
-  var hdr = document.getElementById('PQL_qrHeader');
-  if (hdr) hdr.style.background = c.bg;
-
-  document.getElementById('PQL_qrIcono').textContent     = c.icono;
-  document.getElementById('PQL_qrNombreMetodo').textContent = 'Pagar con ' + c.nombre;
-  document.getElementById('PQL_qrMonto').textContent     = 'S/ ' + total;
-  document.getElementById('PQL_qrInstruccion').textContent = c.instruccion;
-  document.getElementById('PQL_qrImg').src               = c.qr;
-  document.getElementById('PQL_qrImg').alt               = 'QR ' + c.nombre;
-  document.getElementById('PQL_qrNumero').textContent    = c.numero;
-
-  // Botón WhatsApp
-  var waBtn = document.getElementById('PQL_qrWaBtn');
-  if (waBtn) waBtn.style.borderColor = c.color;
-
-  modal.style.display = 'flex';
+  var metodoNombre = metodo === 'plin' ? 'Plin' : 'Yape';
+  alert('El pago con ' + metodoNombre + ' todavía no está conectado. No realices transferencias desde esta pantalla.');
 }
 
 function PQL_cerrarQR() {
@@ -948,31 +863,12 @@ function PQL_cerrarQR() {
 }
 
 function PQL_confirmarPagoQR() {
-  var total = PQL_totalCarrito();
-  var metodoNombre = PQL_metodo_actual === 'yape' ? 'Yape' : 'Plin';
-  var cursos = PQL_carrito.map(function(i) {
-    return '• ' + i.nombre + ' — S/ ' + i.precio;
-  }).join('%0A');
-  var msg = 'Hola PROTEQLIFE! 👋%0A%0A' +
-    '✅ Quiero confirmar mi pago de *S/ ' + total + '* realizado por *' + metodoNombre + '*%0A%0A' +
-    '📚 *Cursos adquiridos:*%0A' + cursos + '%0A%0A' +
-    '📸 Adjunto la captura de pantalla del pago.%0A' +
-    'Por favor, confirmen mi acceso al Aula Virtual. 🙏';
-  window.open('https://wa.me/51999000000?text=' + msg, '_blank');
-  PQL_cerrarQR();
-  PQL_mostrarConfirmacion(metodoNombre);
+  alert('Los pagos con Yape y Plin aún no están conectados. No realices transferencias desde esta pantalla.');
 }
 
 // ── PAGO EFECTIVO ────────────────────────────────────────
 function PQL_mostrarPagoEfectivo() {
-  var total = PQL_totalCarrito();
-  var modal = document.getElementById('PQL_efectivoModal');
-  if (!modal) return;
-
-  var codigo = 'PQL-' + Date.now().toString(36).toUpperCase().slice(-8);
-  document.getElementById('PQL_efectivoCodigo').textContent = codigo;
-  document.getElementById('PQL_efectivoMonto').textContent  = 'S/ ' + total;
-  modal.style.display = 'flex';
+  alert('PagoEfectivo todavía no está conectado. No realices pagos desde esta pantalla.');
 }
 
 function PQL_cerrarEfectivo() {
@@ -981,32 +877,12 @@ function PQL_cerrarEfectivo() {
 }
 
 function PQL_confirmarEfectivo() {
-  var total = PQL_totalCarrito();
-  var codigo = document.getElementById('PQL_efectivoCodigo')?.textContent || '';
-  var cursos = PQL_carrito.map(function(i) { return '• ' + i.nombre + ' — S/ ' + i.precio; }).join('%0A');
-  var msg = 'Hola PROTEQLIFE! 👋%0A%0A' +
-    '🏧 Quiero confirmar mi pago de *S/ ' + total + '* por *PagoEfectivo*%0A' +
-    '🔑 Código de operación: *' + codigo + '*%0A%0A' +
-    '📚 *Cursos:*%0A' + cursos + '%0A%0A' +
-    'Por favor confirmen mi acceso. 🙏';
-  window.open('https://wa.me/51999000000?text=' + msg, '_blank');
-  PQL_cerrarEfectivo();
-  PQL_mostrarConfirmacion('PagoEfectivo');
+  alert('PagoEfectivo aún no está conectado. No realices pagos desde esta pantalla.');
 }
 
 // ── CONFIRMACIÓN FINAL ───────────────────────────────────
 function PQL_mostrarConfirmacion(metodo) {
-  var total = PQL_totalCarrito();
-  var conf = document.getElementById('PQL_confirmacion');
-  if (!conf) return;
-
-  document.getElementById('PQL_confMonto').textContent   = 'S/ ' + total;
-  document.getElementById('PQL_confMetodo').textContent  = metodo;
-
-  PQL_carrito = [];
-  PQL_guardarCarrito();
-  PQL_actualizarBadges();
-  conf.style.display = 'flex';
+  alert('No se puede confirmar una compra hasta que el pago se verifique con el proveedor de pagos.');
 }
 
 function PQL_cerrarConfirmacion() {
@@ -1062,7 +938,7 @@ function PQL_inyectarHTML() {
       transition:background .2s"
       onmouseover="this.style.background='#0C3254'"
       onmouseout="this.style.background='#1565C0'">
-      💳 Pagar ahora
+      Consultar inscripción
     </button>
   </div>
 </div>
@@ -1153,7 +1029,7 @@ function PQL_inyectarHTML() {
     <div style="background:#05192D;padding:18px 24px;
       display:flex;align-items:center;justify-content:space-between">
       <span style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#fff">
-        💳 Finalizar compra</span>
+        Consulta tu inscripción</span>
       <button onclick="PQL_cerrarCheckout()"
         style="background:none;border:none;color:rgba(255,255,255,.6);
         font-size:20px;cursor:pointer;line-height:1">✕</button>
@@ -1165,13 +1041,13 @@ function PQL_inyectarHTML() {
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;
       padding:14px 24px;border-bottom:1px solid #E8ECF0">
-      <span style="font-size:14px;font-weight:600;color:#5A6472">Total a pagar</span>
+      <span style="font-size:14px;font-weight:600;color:#5A6472">Total referencial</span>
       <span id="PQL_checkoutTotal"
         style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#05192D">S/ 0</span>
     </div>
     <div style="padding:20px 24px">
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;
-        letter-spacing:1px;color:#9BA3AD;margin-bottom:14px">Elige tu método de pago</div>
+        letter-spacing:1px;color:#9BA3AD;margin-bottom:14px">Estado de la inscripción</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
         <button onclick="PQL_procesarPago('tarjeta')" class="pql-pay-btn">
           <span style="font-size:28px">💳</span>
@@ -1195,257 +1071,6 @@ function PQL_inyectarHTML() {
         </button>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- ── MODAL TARJETA ── -->
-<div id="PQL_tarjetaModal" onclick="if(event.target===this)PQL_cerrarTarjeta()"
-  style="display:none;position:fixed;inset:0;background:rgba(5,25,45,0.65);
-  z-index:7000;align-items:center;justify-content:center;padding:16px">
-  <div style="background:#fff;border-radius:16px;max-width:440px;width:100%;
-    position:relative;max-height:90vh;overflow-y:auto">
-    <button onclick="PQL_cerrarTarjeta()"
-      style="position:absolute;top:14px;right:16px;background:none;border:none;
-      font-size:20px;cursor:pointer;color:#9BA3AD;z-index:1">✕</button>
-
-    <!-- Header azul -->
-    <div style="background:#1565C0;padding:20px 24px;border-radius:16px 16px 0 0">
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="font-size:24px">💳</span>
-        <div>
-          <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff">
-            Pago seguro</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.7)">
-            Completa tus datos para finalizar la compra</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="padding:20px 24px">
-      <!-- Resumen -->
-      <div style="background:#F5F7FA;border-radius:10px;padding:14px;margin-bottom:20px">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;
-          letter-spacing:.5px;color:#9BA3AD;margin-bottom:8px">Resumen del pedido</div>
-        <div id="PQL_tarjetaResumen"></div>
-      </div>
-
-      <!-- Formulario -->
-      <div style="margin-bottom:14px">
-        <label style="display:block;font-size:12px;font-weight:600;
-          color:#5A6472;margin-bottom:5px">Nombre en la tarjeta</label>
-        <input id="PQL_pfNombre" type="text" placeholder="Como aparece en tu tarjeta"
-          style="width:100%;padding:11px 14px;border:1.5px solid #E8ECF0;border-radius:8px;
-          font-family:'DM Sans',sans-serif;font-size:14px;color:#05192D;outline:none;
-          transition:border-color .15s"
-          onfocus="this.style.borderColor='#2196F3'"
-          onblur="this.style.borderColor='#E8ECF0'">
-      </div>
-      <div style="margin-bottom:14px">
-        <label style="display:block;font-size:12px;font-weight:600;
-          color:#5A6472;margin-bottom:5px">Número de tarjeta</label>
-        <input id="PQL_pfTarjeta" type="text" placeholder="1234 5678 9012 3456"
-          maxlength="19" oninput="PQL_fmtCard(this)"
-          style="width:100%;padding:11px 14px;border:1.5px solid #E8ECF0;border-radius:8px;
-          font-family:'DM Sans',sans-serif;font-size:14px;color:#05192D;outline:none;
-          transition:border-color .15s;letter-spacing:1px"
-          onfocus="this.style.borderColor='#2196F3'"
-          onblur="this.style.borderColor='#E8ECF0'">
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-        <div>
-          <label style="display:block;font-size:12px;font-weight:600;
-            color:#5A6472;margin-bottom:5px">Vencimiento</label>
-          <input id="PQL_pfVenc" type="text" placeholder="MM/AA"
-            maxlength="5" oninput="PQL_fmtExpiry(this)"
-            style="width:100%;padding:11px 14px;border:1.5px solid #E8ECF0;border-radius:8px;
-            font-family:'DM Sans',sans-serif;font-size:14px;color:#05192D;outline:none;
-            transition:border-color .15s"
-            onfocus="this.style.borderColor='#2196F3'"
-            onblur="this.style.borderColor='#E8ECF0'">
-        </div>
-        <div>
-          <label style="display:block;font-size:12px;font-weight:600;
-            color:#5A6472;margin-bottom:5px">CVV</label>
-          <input id="PQL_pfCVV" type="text" placeholder="123" maxlength="3"
-            style="width:100%;padding:11px 14px;border:1.5px solid #E8ECF0;border-radius:8px;
-            font-family:'DM Sans',sans-serif;font-size:14px;color:#05192D;outline:none;
-            transition:border-color .15s"
-            onfocus="this.style.borderColor='#2196F3'"
-            onblur="this.style.borderColor='#E8ECF0'">
-        </div>
-      </div>
-
-      <!-- Error -->
-      <div id="PQL_tarjetaErr"
-        style="display:none;background:#FEE2E2;color:#991B1B;
-        padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:14px"></div>
-
-      <!-- Seguridad -->
-      <div style="display:flex;align-items:center;gap:6px;
-        font-size:11px;color:#9BA3AD;margin-bottom:16px">
-        🔒 Pago 100% seguro y encriptado — Culqi
-      </div>
-
-      <!-- Submit -->
-      <button id="PQL_tarjetaSubmit" onclick="PQL_confirmarTarjeta()"
-        style="width:100%;padding:14px;background:#1565C0;color:#fff;border:none;
-        border-radius:10px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;
-        cursor:pointer;transition:background .2s"
-        onmouseover="this.style.background='#0C3254'"
-        onmouseout="this.style.background='#1565C0'">
-        Confirmar pago →
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ── MODAL QR (Yape / Plin) ── -->
-<div id="PQL_qrModal" onclick="if(event.target===this)PQL_cerrarQR()"
-  style="display:none;position:fixed;inset:0;background:rgba(5,25,45,0.65);
-  z-index:7000;align-items:center;justify-content:center;padding:16px">
-  <div style="background:#fff;border-radius:16px;max-width:380px;width:100%;
-    overflow:hidden;position:relative">
-    <button onclick="PQL_cerrarQR()"
-      style="position:absolute;top:12px;right:14px;background:rgba(255,255,255,.2);
-      border:none;font-size:18px;cursor:pointer;color:#fff;
-      border-radius:50%;width:28px;height:28px;line-height:1;z-index:1">✕</button>
-
-    <!-- Header con gradiente de color -->
-    <div id="PQL_qrHeader"
-      style="padding:20px 24px;text-align:center">
-      <div id="PQL_qrIcono" style="font-size:36px;margin-bottom:8px"></div>
-      <div id="PQL_qrNombreMetodo"
-        style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:4px"></div>
-      <div style="font-size:14px;color:rgba(255,255,255,.85)">
-        Monto: <strong id="PQL_qrMonto" style="font-size:20px"></strong>
-      </div>
-    </div>
-
-    <div style="padding:20px 24px;text-align:center">
-      <div id="PQL_qrInstruccion"
-        style="font-size:13px;color:#5A6472;margin-bottom:14px"></div>
-
-      <!-- QR Image -->
-      <div style="background:#F5F7FA;border-radius:12px;padding:16px;
-        display:inline-block;margin-bottom:14px">
-        <img id="PQL_qrImg" src="" alt="QR"
-          style="width:200px;height:200px;display:block;border-radius:6px">
-      </div>
-
-      <div style="font-size:13px;color:#5A6472;margin-bottom:6px">
-        O transfiere al número:
-      </div>
-      <div id="PQL_qrNumero"
-        style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;
-        color:#05192D;margin-bottom:16px"></div>
-
-      <div style="background:#FFF3CD;border-radius:8px;padding:10px 14px;
-        font-size:12px;color:#856404;margin-bottom:20px;text-align:left;line-height:1.5">
-        💡 <strong>Instrucciones:</strong> Realiza el pago por el monto exacto.
-        Luego presiona el botón para enviar la captura por WhatsApp y confirmar tu inscripción.
-      </div>
-
-      <button id="PQL_qrWaBtn" onclick="PQL_confirmarPagoQR()"
-        style="width:100%;padding:13px;background:#25D366;color:#fff;border:2px solid #25D366;
-        border-radius:10px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;
-        cursor:pointer;display:flex;align-items:center;justify-content:center;
-        gap:8px;transition:background .2s"
-        onmouseover="this.style.background='#1da851'"
-        onmouseout="this.style.background='#25D366'">
-        📱 Ya pagué — Enviar evidencia por WhatsApp
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ── MODAL PAGO EFECTIVO ── -->
-<div id="PQL_efectivoModal" onclick="if(event.target===this)PQL_cerrarEfectivo()"
-  style="display:none;position:fixed;inset:0;background:rgba(5,25,45,0.65);
-  z-index:7000;align-items:center;justify-content:center;padding:16px">
-  <div style="background:#fff;border-radius:16px;max-width:420px;width:100%;
-    overflow:hidden;position:relative">
-    <button onclick="PQL_cerrarEfectivo()"
-      style="position:absolute;top:14px;right:16px;background:none;border:none;
-      font-size:20px;cursor:pointer;color:#9BA3AD">✕</button>
-
-    <div style="background:#1B5E20;padding:20px 24px">
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="font-size:28px">🏧</span>
-        <div>
-          <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff">
-            PagoEfectivo</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.75)">Paga en agentes y bancos</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="padding:22px 24px">
-      <div style="background:#F0FFF4;border:1px solid #BBF7D0;border-radius:10px;
-        padding:16px;text-align:center;margin-bottom:18px">
-        <div style="font-size:12px;color:#16A34A;font-weight:600;margin-bottom:6px;
-          text-transform:uppercase;letter-spacing:.5px">Tu código de pago</div>
-        <div id="PQL_efectivoCodigo"
-          style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;
-          color:#05192D;letter-spacing:2px"></div>
-        <div style="font-size:12px;color:#5A6472;margin-top:6px">
-          Monto a pagar: <strong id="PQL_efectivoMonto" style="color:#05192D"></strong>
-        </div>
-      </div>
-
-      <div style="font-size:13px;color:#5A6472;line-height:1.7;margin-bottom:18px">
-        <strong style="color:#05192D">¿Cómo pagar?</strong><br>
-        1. Ve a cualquier agente BCP, Interbank, Scotiabank o BBVA<br>
-        2. Indica que quieres hacer un pago con <strong>PagoEfectivo</strong><br>
-        3. Proporciona el código de arriba y el monto<br>
-        4. Guarda el comprobante
-      </div>
-
-      <button onclick="PQL_confirmarEfectivo()"
-        style="width:100%;padding:13px;background:#25D366;color:#fff;border:none;
-        border-radius:10px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;
-        cursor:pointer;display:flex;align-items:center;justify-content:center;
-        gap:8px;margin-bottom:8px"
-        onmouseover="this.style.background='#1da851'"
-        onmouseout="this.style.background='#25D366'">
-        📱 Ya pagué — Enviar comprobante por WhatsApp
-      </button>
-      <button onclick="PQL_cerrarEfectivo()"
-        style="width:100%;padding:11px;background:#F5F7FA;color:#5A6472;border:none;
-        border-radius:10px;font-size:13px;cursor:pointer">
-        Cancelar
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ── CONFIRMACIÓN FINAL ── -->
-<div id="PQL_confirmacion"
-  style="display:none;position:fixed;inset:0;background:rgba(5,25,45,0.65);
-  z-index:8000;align-items:center;justify-content:center;padding:16px">
-  <div style="background:#fff;border-radius:16px;max-width:400px;width:100%;
-    padding:40px 32px;text-align:center">
-    <div style="width:72px;height:72px;background:#DCFCE7;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      font-size:32px;margin:0 auto 20px">✅</div>
-    <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;
-      color:#05192D;margin-bottom:10px">¡Pago registrado!</h3>
-    <p style="font-size:14px;color:#5A6472;line-height:1.6;margin-bottom:4px">
-      Recibimos tu pago de <strong id="PQL_confMonto"></strong> vía
-      <strong id="PQL_confMetodo"></strong>.
-    </p>
-    <p style="font-size:13px;color:#9BA3AD;margin-bottom:28px">
-      Recibirás acceso a tus cursos por correo en minutos.</p>
-    <a href="aula-virtual.html"
-      style="display:block;padding:13px;background:#05192D;color:#fff;border-radius:10px;
-      font-family:'Syne',sans-serif;font-size:14px;font-weight:700;
-      text-decoration:none;text-align:center;margin-bottom:10px">
-      🎓 Ir al Aula Virtual →
-    </a>
-    <button onclick="PQL_cerrarConfirmacion()"
-      style="width:100%;padding:11px;background:#F5F7FA;color:#5A6472;
-      border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer">
-      Seguir comprando cursos
-    </button>
   </div>
 </div>
 
