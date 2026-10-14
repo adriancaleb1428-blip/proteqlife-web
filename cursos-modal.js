@@ -944,7 +944,7 @@ function PQL_inyectarHTML() {
 </div>
 
 <!-- ── BOTÓN FLOTANTE CARRITO ── -->
-<button id="PQL_cartFloatBtn" onclick="(typeof toggleCarrito==='function'?toggleCarrito():PQL_abrirCarrito())"
+<button id="PQL_cartFloatBtn" type="button" onclick="PQL_abrirCarrito()"
   style="display:none;position:fixed;bottom:24px;right:24px;
   background:#05192D;color:#fff;border:none;border-radius:50px;
   padding:12px 20px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
