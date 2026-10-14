@@ -502,7 +502,10 @@ function PQL_guardarCarrito() {
 }
 
 function PQL_totalCarrito() {
-  return PQL_carrito.reduce(function(s, i) { return s + i.precio; }, 0);
+  return PQL_carrito.reduce(function(s, i) {
+    var precio = i.precioNum != null ? Number(i.precioNum) : Number(String(i.precio || '').replace(/[^\d.]/g, ''));
+    return s + (Number.isFinite(precio) ? precio : 0);
+  }, 0);
 }
 
 function PQL_actualizarBadges() {
@@ -537,7 +540,7 @@ function PQL_renderCarritoPanel() {
         '<div style="font-size:13px;font-weight:600;color:#05192D;line-height:1.4;margin-bottom:3px">' +
         (item.nombre.length > 42 ? item.nombre.substring(0,42)+'...' : item.nombre) + '</div>' +
         '<div style="font-size:11px;color:#9BA3AD;margin-bottom:3px">' + (item.modalidadElegida || '') + '</div>' +
-        '<div style="font-size:14px;font-weight:700;color:#1565C0">S/ ' + item.precio + '</div>' +
+        '<div style="font-size:14px;font-weight:700;color:#1565C0">S/ ' + (item.precioNum != null ? item.precioNum : String(item.precio || '').replace(/[^\d.]/g, '')) + '</div>' +
         '</div>' +
         '<button onclick="PQL_quitarItem(' + idx + ')" ' +
         'style="background:none;border:none;color:#9BA3AD;cursor:pointer;font-size:18px;padding:4px;flex-shrink:0;line-height:1;border-radius:4px" ' +
@@ -550,18 +553,40 @@ function PQL_renderCarritoPanel() {
 }
 
 function PQL_abrirCarrito() {
+  try {
+    var guardado = JSON.parse(localStorage.getItem('pq_cart') || '[]');
+    PQL_carrito = Array.isArray(guardado) ? guardado : [];
+  } catch (e) {
+    PQL_carrito = [];
+  }
   PQL_renderCarritoPanel();
   var panel = document.getElementById('PQL_cartPanel');
   var overlay = document.getElementById('PQL_cartOverlay');
-  if (panel)   panel.classList.add('open');
-  if (overlay) overlay.classList.add('open');
+  if (panel) {
+    panel.classList.add('open');
+    panel.style.transform = 'translateX(0)';
+  }
+  if (overlay) {
+    overlay.classList.add('open');
+    overlay.style.opacity = '1';
+    overlay.style.visibility = 'visible';
+    overlay.style.pointerEvents = 'auto';
+  }
 }
 
 function PQL_cerrarCarrito() {
   var panel = document.getElementById('PQL_cartPanel');
   var overlay = document.getElementById('PQL_cartOverlay');
-  if (panel)   panel.classList.remove('open');
-  if (overlay) overlay.classList.remove('open');
+  if (panel) {
+    panel.classList.remove('open');
+    panel.style.transform = 'translateX(100%)';
+  }
+  if (overlay) {
+    overlay.classList.remove('open');
+    overlay.style.opacity = '0';
+    overlay.style.visibility = 'hidden';
+    overlay.style.pointerEvents = 'none';
+  }
 }
 
 function PQL_quitarItem(idx) {
@@ -736,7 +761,6 @@ function PQL_modalAgregarCarrito() {
   var c = PQL_cursoActual;
   // Usar precio de la modalidad seleccionada; caer a precio base si no aplica
   var precioNum = (c._precioModalidad != null ? c._precioModalidad : c.precio) || 0;
-  var precioStr = 'S/ ' + precioNum;
 
   // Use the shared pq_cart system (same as curso-detalle.html)
   var cart = JSON.parse(localStorage.getItem('pq_cart') || '[]');
@@ -745,9 +769,10 @@ function PQL_modalAgregarCarrito() {
     cart.push({
       slug: c.slug,
       nombre: c.nombre,
-      precio: precioStr,
+      precio: precioNum,
       precioNum: precioNum,
-      emoji: c.emoji || '📚'
+      emoji: c.emoji || '📚',
+      modalidadElegida: PQL_modalidadSeleccionada || c.modalidades[0]
     });
     localStorage.setItem('pq_cart', JSON.stringify(cart));
   }
