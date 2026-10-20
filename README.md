@@ -2,6 +2,8 @@
 
 ## 📁 Estructura del proyecto
 
+> **Estado actual (octubre de 2026).** La plataforma publicada usa dos superficies: el sitio informativo estático en la raíz y el aula React/Vite en [`/aula/`](./aula/), conectada a Supabase. Los archivos `aula.js`, `auth.js`, `admin.js` y `aula-virtual.html` pertenecen al backend Express/MySQL anterior; no los carga el aula publicada. Se conservan como referencia hasta migrarlos o retirarlos en una limpieza planificada.
+
 ```
 proteqlife/
 │
