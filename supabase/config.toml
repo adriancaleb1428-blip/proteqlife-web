@@ -1,7 +1,0 @@
-project_id = "aulanova"
-
-[functions.admin-users]
-verify_jwt = true
-
-[functions.send-academic-notifications]
-verify_jwt = true

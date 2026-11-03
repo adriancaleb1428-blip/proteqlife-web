@@ -173,7 +173,7 @@
           </div><!-- /ddServicios -->
 
           <a href="contacto.html" class="nav-link" id="navContacto">Contáctanos</a>
-          <a href="https://adriancaleb1428-blip.github.io/proteqlife-web/aula/" class="nav-link nav-aula" id="navAula">🎓 Aula Consulting</a>
+          <a href="https://aulaconsulting.vercel.app/" class="nav-link nav-aula" id="navAula">🎓 Aula Consulting</a>
         </div>
 
         <!-- Hamburger móvil -->
@@ -217,7 +217,7 @@
       </div>
     </div>
     <a href="contacto.html" class="mob-link">📩 Contáctanos</a>
-    <a href="https://adriancaleb1428-blip.github.io/proteqlife-web/aula/" class="mob-link mob-aula">🎓 Aula Consulting</a>
+    <a href="https://aulaconsulting.vercel.app/" class="mob-link mob-aula">🎓 Aula Consulting</a>
   </div>
 
 </nav>`;
