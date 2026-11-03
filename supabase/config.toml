@@ -1,4 +1,7 @@
 project_id = "aulanova"
 
-[functions.create-meeting-token]
+[functions.admin-users]
+verify_jwt = true
+
+[functions.send-academic-notifications]
 verify_jwt = true
